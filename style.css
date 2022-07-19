@@ -1,0 +1,82 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+
+  font-size: 18;
+
+  color-scheme: light dark;
+}
+
+#sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, min-content);
+  grid-template-rows: repeat(9, min-content);
+  /* grid-auto-rows: min-content; */
+
+  border: 1px solid black;
+  width: fit-content;
+}
+
+
+/* #region Sudoku Cell */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+.sudoku-cell {
+  aspect-ratio: 1;
+  width: fit-content;
+  position: relative;
+}
+/* .sudoku-cell:nth-child(3n){
+  border-right:3px solid black;
+} */
+
+
+.sudoku-cell-input {
+  aspect-ratio: inherit;
+  width: 2rem;
+  border: 1px solid black;
+  padding: 0;
+  text-align: center;
+  font-size: 1rem;
+}
+.sudoku-cell-input:hover {
+  background-color: lightcyan;
+}
+.sudoku-cell-input:focus {
+  background-color: cyan;
+}
+
+/* #endregion Sudoku Cell */
+
+
+.sudoku-cell-possibilities{
+  position: absolute;
+  top: 0;
+  width: 80%;
+  margin: .1rem .2rem;
+
+  font-size: .5rem;
+  color: gray;
+
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: repeat(3, min-content);
+  justify-content: space-between;
+
+  pointer-events: none;
+}
+
+.hide{
+  display: none;
+}
+
