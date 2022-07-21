@@ -1,5 +1,40 @@
 import './style.css';
 
+
+class SudokuBoard {
+  constructor(board) {
+    this.board = board;
+  }
+
+  static updatePossibilities = (board, boardElement) => {
+    board.forEach((row, r) => {
+      const rowElement = boardElement.querySelectorAll(`[data-row="${r + 1}"]`);
+      row.forEach((cell, c) => {
+        const cellElement = rowElement[c]
+
+
+
+
+
+
+
+        const possibilitiesElement = cellElement.querySelector(".sudoku-cell-possibilities")
+        // console.log(possibilitiesElement.children);
+        // Array.from(possibilitiesElement.children).forEach(child => {
+        //   if (cell.possibilities.has(Number(child.innerHTML))) {
+        //     // console.log(cell.possibilities.has(Number(child.innerHTML)));
+        //     child.classList.remove("hide");
+        //   } else {
+        //     child.classList.add("hide");
+        //   }
+
+        // });
+
+      });
+    });
+    console.log(board);
+  }
+}
 class SudokuCell {
   constructor(value, permanent, possibilities, row, column) {
     this.value = value;
@@ -23,6 +58,8 @@ class SudokuCell {
     myHost.value = this.value;
 
     myHost.setAttribute("value", myHost.value);
+
+    SudokuBoard.updatePossibilities(sudokuBoard, document.getElementById("sudoku-board"));
 
   }
 
@@ -57,38 +94,6 @@ class SudokuCell {
 
     return board;
   }
-  static updatePossibilities = (board, boardElement) => {
-    board.forEach((row, r) => {
-      const rowElement = boardElement.querySelectorAll(`[data-row="${r + 1}"]`);
-      row.forEach((cell, c) => {
-        const cellElement = rowElement[c]
-        console.log(cellElement);
-        // .querySelector(`[data-column="${c + 1}"]`);
-
-
-        // //row
-        // for (let index = 0; index < 9; index++) {
-        //   possibilities.delete(row[index].value);
-        // }
-        // //column
-        // for (let index = 0; index < 9; index++) {
-        //   possibilities.delete(board[index][c].value);
-        // }
-        // //sub box
-        // const subBoxR = Math.ceil((r + 1) / 3);
-        // const subBoxC = Math.ceil((c + 1) / 3);
-
-        // for (let indexR = 0; indexR < 3; indexR++) {
-        //   for (let indexC = 0; indexC < 3; indexC++) {
-        //     // console.log((subBoxR - 1) * 3 + indexR, (subBoxC - 1) * 3 + indexC, cell.value)
-        //     possibilities.delete(board[(subBoxR - 1) * 3 + indexR][(subBoxC - 1) * 3 + indexC].value);
-        //   }
-        // }
-
-
-      })
-    });
-  }
 
   static createBoardFromArray = (sudoku) => {
     const board = [];
@@ -103,6 +108,9 @@ class SudokuCell {
   }
 }
 
+
+
+// document.getElementById("App").classList.
 
 
 const cell_html = `<div class="sudoku-cell">
@@ -165,7 +173,7 @@ window.randomCell = (e) => {
   const targ = sudokuBoard[Math.floor(Math.random() * sudokuBoard.length)][Math.floor(Math.random() * sudokuBoard.length)];
   targ.selectRandomFromPossibilities();
 
-  SudokuCell.updatePossibilities(sudokuBoard, document.getElementById("sudoku-board"));
+  // SudokuCell.updatePossibilities(sudokuBoard, document.getElementById("sudoku-board"));
 
   // console.log(targ);
   // console.log(sudokuBoard);
@@ -181,7 +189,7 @@ document.querySelectorAll("#sudoku-board .sudoku-cell input").forEach(input => {
       e.target.setAttribute("value", e.target.value);
       const [r, c] = [e.target.parentElement.dataset.row, e.target.parentElement.dataset.column];
 
-      sudokuBoard[r - 1][c - 1].value = e.target.value;
+      sudokuBoard[r - 1][c - 1].setValue(e.target.value);
     }
   });
 })
