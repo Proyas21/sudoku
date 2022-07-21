@@ -1,8 +1,6 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-
   font-size: 18;
-
   color-scheme: light dark;
 }
 
@@ -36,9 +34,17 @@ input[type="number"] {
   width: fit-content;
   position: relative;
 }
+
 /* .sudoku-cell:nth-child(3n){
   border-right:3px solid black;
 } */
+
+[data-column = "3"], [data-column = "6"]{
+  border-right: 2px solid black;
+}
+[data-row = "3"], [data-row = "6"]{
+  border-bottom: 2px solid black;
+}
 
 
 .sudoku-cell-input {
@@ -76,7 +82,19 @@ input[type="number"] {
   pointer-events: none;
 }
 
-.hide{
-  display: none;
+
+/* #sudoku-board [data-row = "6"][data-column = "5"] input {
+  border: 5px solid rebeccapurple;
+} */
+
+input[value]+.sudoku-cell-possibilities {
+display: none;
 }
 
+.permanent{
+  color: gray;
+}
+
+.hide{
+  color: transparent;
+}
